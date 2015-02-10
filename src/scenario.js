@@ -58,7 +58,6 @@
             },
             setVariant: function(variant){
                 /* Set the current variant inside the Mixpanel Cookie */
-                var name = scenarioOpts.name;
                 var mpObj = {}
                 mpObj[scenarioOpts.name] = variant
                 mixpanel.register(mpObj);
