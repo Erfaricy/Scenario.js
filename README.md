@@ -13,7 +13,7 @@ A lightweight A/B Testing library for use with MixPanel
 ```
 
 ## Usage
-Within Mixpanel's init method, there is a loaded parameter that can wait until Mixpanels library has been initialized. To use Scenario in the initialization, please update the tail end of your mixpanel library with:
+In order to wait until Mixpanel's library is loaded, we will utilized .init({'loaded':}).  To make sure that your Scenario function calls are run after Mixpanel loads, please update the tail end of your mixpanel library with:
 ```javascript
 mixpanel.init('<YOUR_PROJ_TOKEN>',{'loaded' : function() { 
   var test = new Scenario({
