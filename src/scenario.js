@@ -58,8 +58,8 @@
             },
             setVariant: function(variant){
                 /* Set the current variant inside the Mixpanel Cookie */
-                var mpObj = {}
-                mpObj[scenarioOpts.name] = variant
+                var mpObj = {};
+                mpObj[scenarioOpts.name] = variant;
                 mixpanel.register(mpObj);
             }
         };
@@ -91,12 +91,12 @@
                 var test = self.tests[scenarioOpts.name][chosenTestIndex];
                 utils.setVariant(test.name);
             } else {
-                var test = utils.checkVariant(scenarioOpts.name)
+                var test = utils.checkVariant(scenarioOpts.name);
                 /* This is to find the callback for the test */
-                var tests = self.tests[scenarioOpts.name]
+                var tests = self.tests[scenarioOpts.name];
                 for (var i = 0; i <  tests.length; i++) {
                     if (tests[i].name == test.name) {
-                      test.callback = tests[i].callback 
+                      test.callback = tests[i].callback; 
                     }
                 }
             }
