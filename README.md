@@ -13,22 +13,24 @@ A lightweight A/B Testing library for use with MixPanel
 ```
 
 ## Usage
-
+Within Mixpanel's init method, there is a loaded parameter that can wait until Mixpanels library has been initialized. To use Scenario in the initialization, please update the tail end of your mixpanel library with:
 ```javascript
-var test = new Scenario({
-  name: 'My Test Name',
+mixpanel.init('<YOUR_PROJ_TOKEN>',{'loaded' : function() { 
+  var test = new Scenario({
+    name: 'My Test Name',
+  })
+  .test({
+    name: 'Test A',
+    weight: 3, // The optional weight of the test. Each test has a weight of 1 by default
+    className: 'foobar' // An optional class to add to the body tag. If left empty, the test name will be turned into a slug (i.e. "test-a")
+  })
+  .test({
+    name: 'Test B'
+    callback: function(){ console.log('I was chosen!'); } // An optional callback if the test is chosen
+  })
+  .go();
+  }
 })
-.test({
-  name: 'Test A',
-  weight: 3, // The optional weight of the test. Each test has a weight of 1 by default
-  className: 'foobar' // An optional class to add to the body tag. If left empty, the test name will be turned into a slug (i.e. "test-a")
-})
-.test({
-  name: 'Test B'
-  callback: function(){ console.log('I was chosen!'); } // An optional callback if the test is chosen
-})
-.go();
-
 // At a later point
 test.complete();
 ```
